@@ -17,7 +17,9 @@ export class SettingPage {
       content: 'Loading routes'
     });
     loading.present();
+    
     console.log('clicked update Route List');
+
     this.apiProvider.updateStorage().then(value =>{
       loading.dismiss();
     });

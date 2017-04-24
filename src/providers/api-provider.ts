@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ApiProvider {
 
-  public baseUrl:string;
+  public baseUrl: string;
 
   /**
    * 
@@ -21,21 +21,22 @@ export class ApiProvider {
   }
 
 
-  public updateStorage():Promise<boolean> {
+  public updateStorage(): Promise<boolean> {
     let routes = null;
-    
-    return new Promise<boolean>((resolve,reject)=>{
-      this.http.get(this.baseUrl+'agencies/ttc/routes/').map(res => res.json()).subscribe(
+
+    return new Promise<boolean>((resolve, reject) => {
+      this.http.get(this.baseUrl + 'agencies/ttc/routes/').map(res => res.json()).subscribe(
         data => {
           routes = data;
         },
         err => console.log(err),
-        ()=>{
-          this.storage.set('routes', routes).then(value=>{
-            this._updateStops();
+        () => {
+          this.storage.set('routes', routes).then(value => {
+            this._updateStops(resolve);
             console.log('successfully set routes');
-          }).catch(err=>{
+          }).catch(err => {
             console.log('error with routes');
+            reject(false);
             console.log(err);
           });
 
@@ -44,27 +45,41 @@ export class ApiProvider {
     });
   }
 
-  private _updateStops():void{
-    this.storage.get('routes').then(routes=>{
+  private _updateStops(resolve): void {
+
+    this.storage.get('routes').then(routes => {
       routes.forEach(route => {
         let id = route['id'];
-        this.http.get(this.baseUrl+'agencies/ttc/routes/'+id).map(res => res.json()).subscribe(
-           data => {
-             console.log(data.directions);
-           },
-           err => console.log(err),
-           ()=>{console.log('done getting '+id);
-           }
+        this.http.get(this.baseUrl + 'agencies/ttc/routes/' + id).map(res => res.json()).subscribe(
+          data => {
+            let dirMap:Object ={};
+            let directions: Array<Object> = data.directions;
+            console.log(data.directions);
+
+            directions.forEach(direction => {
+              console.log(direction['shortTitle']);
+              if (dirMap.hasOwnProperty('shortTitle')) {
+                
+              } else {
+                dirMap[direction['shortTitle']] = direction['stops']
+              }
+            });
+          },
+          err => console.log(err),
+          () => {
+            console.log('done getting ' + id);
+            if (id === '514') { resolve(true); }
+          }
         );
       });
     }).catch(err => console.log(err));
-  }  
+  }
 
   /**
    * getRoutes
    */
-  public getRoutes():Observable<Object> {
-    return this.http.get(this.baseUrl+'agencies/ttc/routes/');
+  public getRoutes(): Observable<Object> {
+    return this.http.get(this.baseUrl + 'agencies/ttc/routes/');
   }
 
 }
