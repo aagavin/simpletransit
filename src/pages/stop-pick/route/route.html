@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Description
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios">Close</span>
+        <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-searchbar [(ngModel)]="searchValue" (ionInput)="onInput($event)" (ionCancel)="onCancel()"></ion-searchbar>
+
+  <ion-list>
+    <button ion-item *ngFor="let route of routes" (click)="dismiss(route.id)">
+      {{route.title}}
+    </button>
+  </ion-list>
+
+</ion-content>
