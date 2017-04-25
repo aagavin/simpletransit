@@ -1,16 +1,17 @@
 import { NgModule, ErrorHandler } from '@angular/core';
-import { HttpModule, ConnectionBackend } from "@angular/http";
+import { HttpModule, ConnectionBackend } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
 
+import { SearchPage } from '../pages/search/search';
+import { SettingPage } from '../pages/setting/setting';
 import { AboutPage } from '../pages/about/about';
-import { SettingPage } from "../pages/setting/setting";
-import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { Route } from '../pages/stop-pick/route/route';
 
-import { ApiProvider } from "../providers/api-provider";
+import { ApiProvider } from '../providers/api-provider';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -18,10 +19,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
+    SearchPage,
     SettingPage,
-    HomePage,
-    TabsPage
+    TabsPage,
+    Route,
+    AboutPage
   ],
   imports: [
     BrowserModule,
@@ -32,10 +34,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
+    SearchPage,
     SettingPage,
-    HomePage,
-    TabsPage
+    TabsPage,
+    Route,
+    AboutPage
   ],
   providers: [
     StatusBar,
