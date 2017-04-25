@@ -1,26 +1,40 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { Http, HttpModule } from '@angular/http';
+import { Http } from '@angular/http';
 import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/map';
 
 
+/**
+ * API Provider
+ * 
+ * @export
+ * @class ApiProvider
+ */
 @Injectable()
 export class ApiProvider {
 
   public baseUrl: string;
 
   /**
+   * Creates an instance of ApiProvider.
+   * @param {Http} http 
+   * @param {Storage} storage 
    * 
-   * @param http 
-   * @param storage 
+   * @memberOf ApiProvider
    */
   constructor(public http: Http, private storage: Storage) {
     console.log('Hello ApiProvider Provider');
     this.baseUrl = 'http://restbus.info/api/';
   }
 
-
+  /**
+   * Update the storage list
+   * 
+   * @returns {Promise<boolean>} 
+   * 
+   * @memberOf ApiProvider
+   */
   public updateStorage(): Promise<boolean> {
     let routes = null;
 
@@ -45,6 +59,15 @@ export class ApiProvider {
     });
   }
 
+
+  /**
+   * Updates the route list
+   * 
+   * @private
+   * @param {any} resolve 
+   * 
+   * @memberOf ApiProvider
+   */
   private _updateStops(resolve): void {
 
     this.storage.get('routes').then(routes => {
@@ -52,18 +75,10 @@ export class ApiProvider {
         let id = route['id'];
         this.http.get(this.baseUrl + 'agencies/ttc/routes/' + id).map(res => res.json()).subscribe(
           data => {
-            let dirMap:Object ={};
-            let directions: Array<Object> = data.directions;
-            console.log(data.directions);
+            this.storage.set(id, data)
+              .then(value => console.log('successfully set value'))
+              .catch(err => console.log(err))
 
-            directions.forEach(direction => {
-              console.log(direction['shortTitle']);
-              if (dirMap.hasOwnProperty('shortTitle')) {
-                
-              } else {
-                dirMap[direction['shortTitle']] = direction['stops']
-              }
-            });
           },
           err => console.log(err),
           () => {
@@ -75,11 +90,17 @@ export class ApiProvider {
     }).catch(err => console.log(err));
   }
 
+
   /**
-   * getRoutes
+   * Gets a list of routes
+   * 
+   * @returns {Promise<Array<Object>>} 
+   * 
+   * @memberOf ApiProvider
    */
-  public getRoutes(): Observable<Object> {
-    return this.http.get(this.baseUrl + 'agencies/ttc/routes/');
+  public getRoutes(): Promise<Array<Object>> {
+    return this.storage.get('routes');
   }
+
 
 }
