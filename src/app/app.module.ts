@@ -9,7 +9,9 @@ import { SearchPage } from '../pages/search/search';
 import { SettingPage } from '../pages/setting/setting';
 import { AboutPage } from '../pages/about/about';
 import { TabsPage } from '../pages/tabs/tabs';
+
 import { Route } from '../pages/stop-pick/route/route';
+import { Direction } from "../pages/stop-pick/direction/direction";
 
 import { ApiProvider } from '../providers/api-provider';
 
@@ -23,6 +25,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     SettingPage,
     TabsPage,
     Route,
+    Direction,
     AboutPage
   ],
   imports: [
@@ -38,6 +41,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     SettingPage,
     TabsPage,
     Route,
+    Direction,
     AboutPage
   ],
   providers: [

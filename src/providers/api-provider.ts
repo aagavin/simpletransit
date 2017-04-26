@@ -103,4 +103,11 @@ export class ApiProvider {
   }
 
 
+  public getDirection(id:string): Promise<Array<Object>> {
+    return new Promise<Array<Object>>((resolve, reject)=>{
+      this.storage.get(id).then()
+    });
+  }
+
+
 }
