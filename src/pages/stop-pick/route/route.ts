@@ -9,27 +9,42 @@ import { ApiProvider } from "../../../providers/api-provider";
 })
 export class Route {
 
-  public routes;
+  public routes: Array<Object>;
+  public routesFiltered: Array<Object>;
   public searchValue;
 
   constructor(private viewController: ViewController, private apiProvider: ApiProvider) {
-    this.searchValue='';
+    this.searchValue = '';
     this.apiProvider.getRoutes()
-      .then(routes => this.routes = routes)
+      .then(routes => {
+        this.routes = routes
+        this.routesFiltered = routes;
+      })
       .catch(err => console.log(err))
   }
 
   public dismiss(item?) {
-    console.log(item);
-    // this.viewController.dismiss(null);
+    if (typeof item === 'undefined') {
+      this.viewController.dismiss(null);  
+    }
+    else{
+      this.viewController.dismiss(item);
+    }
+    
   }
 
-  public onInput(event):void{
-    console.log(event);
+  public onInput(event): void {
+    // console.log(this.searchValue);
+    this.routesFiltered = this.routes.filter(value => {
+      if ((value['title'].toLocaleLowerCase()).includes(this.searchValue)) {
+        return value;
+      }
+    });
   }
 
-  public onCancel():void{
-    this.searchValue='';
+  public onCancel(): void {
+    console.log('cancelled !');
+    this.routesFiltered = this.routes;
   }
 
   public ionViewDidLoad() { console.log('ionViewDidLoad Route'); }

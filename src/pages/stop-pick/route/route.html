@@ -15,10 +15,10 @@
 
 
 <ion-content>
-  <ion-searchbar [(ngModel)]="searchValue" (ionInput)="onInput($event)" (ionCancel)="onCancel()"></ion-searchbar>
+  <ion-searchbar [(ngModel)]="searchValue" (ionInput)="onInput()" (ionCancel)="onCancel()" [showCancelButton]="true" animated="true"></ion-searchbar>
 
   <ion-list>
-    <button ion-item *ngFor="let route of routes" (click)="dismiss(route.id)">
+    <button ion-item *ngFor="let route of routesFiltered" (click)="dismiss(route.id)">
       {{route.title}}
     </button>
   </ion-list>
