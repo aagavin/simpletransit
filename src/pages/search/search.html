@@ -12,8 +12,13 @@
           Select Route
           <ion-badge item-right>{{route}}</ion-badge>
         </button>
-        <button ion-item>
+        <button *ngIf="route" ion-item (click)="selectDirection()">
           Select Direction
+          <ion-badge item-right>{{direction}}</ion-badge>
+        </button>
+        <button *ngIf="direction" ion-item (click)="selectDirection()">
+          Select Stop
+          <ion-badge item-right>test</ion-badge>
         </button>
       </ion-list>
     </ion-card-content>
