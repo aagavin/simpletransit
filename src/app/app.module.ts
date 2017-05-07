@@ -1,5 +1,5 @@
 import { NgModule, ErrorHandler } from '@angular/core';
-import { HttpModule, ConnectionBackend } from '@angular/http';
+import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
@@ -13,8 +13,6 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { Route } from '../pages/stop-pick/route/route';
 import { Direction } from "../pages/stop-pick/direction/direction";
 import { Stop } from "../pages/stop-pick/stop/stop";
-
-import { ApiProvider } from '../providers/api-provider';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
