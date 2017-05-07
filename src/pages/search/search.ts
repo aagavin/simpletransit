@@ -3,6 +3,7 @@ import { ModalController, Modal } from 'ionic-angular';
 
 import { Route } from "../stop-pick/route/route";
 import { Direction } from "../stop-pick/direction/direction";
+import { Stop } from "../stop-pick/stop/stop";
 
 @Component({
   selector: 'page-search',
@@ -33,12 +34,26 @@ export class SearchPage {
   }
 
   
+  /**
+   * Opens the select direction modal
+   * 
+   * 
+   * @memberof SearchPage
+   */
   public selectDirection():void {
     let directionModal:Modal = this.modalController.create(Direction, {'route':this.route});
     directionModal.present();
     directionModal.onDidDismiss(value =>{
       console.log(value);
       this.direction = value;
+    });
+  }
+
+  public selectStop():void{
+    let stopModal:Modal = this.modalController.create(Stop, {'stop':this.route, 'direction': this.direction});
+    stopModal.present();
+    stopModal.onDidDismiss(value =>{
+      console.log(value);
     });
   }
 
