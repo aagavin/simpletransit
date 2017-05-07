@@ -111,14 +111,23 @@ export class ApiProvider {
    * 
    * @memberOf ApiProvider
    */
-  public getDirection(id:string): Promise<Array<string>> {
-    return new Promise<Array<string>>((resolve, reject)=>{
-      this.storage.get(id).then(route =>{
-        let dirMap:Set<string> = new Set<string>();
+  public getDirection(id: string): Promise<Array<string>> {
+    return new Promise<Array<string>>((resolve, reject) => {
+      this.storage.get(id).then(route => {
+        let dirMap: Set<string> = new Set<string>();
         route.directions.forEach(direction => {
           dirMap.add(direction['shortTitle']);
         });
         resolve(Array.from(dirMap));
+      });
+    });
+  }
+
+
+  public getStopsByDirection(id: string, direction: string): Promise<Array<object>> {
+    return new Promise<Array<object>>((resolve, reject) => {
+      this.storage.get(id).then(route =>{
+        
       });
     });
   }
