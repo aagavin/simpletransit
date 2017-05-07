@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Http, HttpModule, ConnectionBackend } from "@angular/http";
+import { Http } from "@angular/http";
 import { NavController, LoadingController, Loading } from 'ionic-angular';
 import { ApiProvider } from "../../providers/api-provider";
 
