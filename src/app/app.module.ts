@@ -12,6 +12,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { Route } from '../pages/stop-pick/route/route';
 import { Direction } from "../pages/stop-pick/direction/direction";
+import { Stop } from "../pages/stop-pick/stop/stop";
 
 import { ApiProvider } from '../providers/api-provider';
 
@@ -26,7 +27,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     TabsPage,
     Route,
     Direction,
-    AboutPage
+    AboutPage,
+    Stop
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     TabsPage,
     Route,
     Direction,
-    AboutPage
+    AboutPage,
+    Stop
   ],
   providers: [
     StatusBar,
