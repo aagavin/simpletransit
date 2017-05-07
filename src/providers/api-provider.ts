@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { Http } from '@angular/http';
-import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/map';
 
 
@@ -124,11 +123,42 @@ export class ApiProvider {
   }
 
 
+  /**
+   * Gets an array of stops by direction
+   * 
+   * @param {string} id 
+   * @param {string} direction 
+   * @returns {Promise<Array<object>>} 
+   * 
+   * @memberof ApiProvider
+   */
   public getStopsByDirection(id: string, direction: string): Promise<Array<object>> {
     return new Promise<Array<object>>((resolve, reject) => {
-      this.storage.get(id).then(route =>{
-        
-      });
+      this.storage.get(id)
+        .then(routeData => {
+          let stopArr = []
+          let directionsArr: Array<object> = routeData.directions;
+          directionsArr.forEach((value, index) => {
+            if (value['shortTitle'] === direction) {
+              stopArr = value['stops'];
+              return;
+            }
+          });
+
+          console.log(stopArr);
+
+          let stops =routeData['stops'].filter(stop =>{
+            return stopArr.indexOf(stop['id'])!=-1
+          });
+
+          resolve(stops);
+          
+        })
+        .catch(err => {
+          console.log(err);
+          reject(err);
+        })
+
     });
   }
 
