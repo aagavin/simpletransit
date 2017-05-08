@@ -20,10 +20,19 @@
           Select Stop
         </button>
         <ion-item *ngIf="direction && stop" (click)="selectStop()">
-          <ion-badge text-wrap item-right>{{stop.title}}</ion-badge>
+          <ion-badge text-wrap>{{stop.title}}</ion-badge>
         </ion-item>
       </ion-list>
     </ion-card-content>
 
+  </ion-card>
+
+  <ion-card *ngIf="stop" *ngFor="let item of items; let i=index">
+    <ion-card-header>
+      
+    </ion-card-header>
+    <ion-card-content>
+      
+    </ion-card-content>
   </ion-card>
 </ion-content>
