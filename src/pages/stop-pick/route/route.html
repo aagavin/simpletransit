@@ -15,7 +15,8 @@
 
 
 <ion-content>
-  <ion-searchbar [(ngModel)]="searchValue" (ionInput)="onInput()" (ionCancel)="onCancel()" [showCancelButton]="true" animated="true"></ion-searchbar>
+  <ion-searchbar [(ngModel)]="searchValue" (ionInput)="onInput()" (ionCancel)="onCancel()" [showCancelButton]="true" animated="true">
+  </ion-searchbar>
 
   <ion-list>
     <button ion-item *ngFor="let route of routesFiltered" (click)="dismiss(route.id)">

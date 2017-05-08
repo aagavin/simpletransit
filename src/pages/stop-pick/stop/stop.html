@@ -15,10 +15,11 @@
 
 
 <ion-content>
-  <ion-searchbar [(ngModel)]="searchValue" (ionInput)="onInput()" (ionCancel)="onCancel()" [showCancelButton]="true" animated="true"></ion-searchbar>
+  <ion-searchbar [(ngModel)]="searchValue" (ionInput)="onInput()" (ionCancel)="onCancel()" [showCancelButton]="true" animated="true">
+  </ion-searchbar>
 
   <ion-list>
-    <button ion-item text-wrap *ngFor="let stop of stopsFiltered" (click)="dismiss(stop)" >
+    <button ion-item text-wrap *ngFor="let stop of stopsFiltered" (click)="dismiss(stop)">
       {{stop.title}}
     </button>
   </ion-list>

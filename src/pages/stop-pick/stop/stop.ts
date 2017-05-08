@@ -61,7 +61,7 @@ export class Stop {
    * 
    * @memberof Stop
    */
-  public oninput(event): void {
+  public onInput(event): void {
     this.stopsFiltered = this.stops.filter(value => {
       if (value['title'].toLocaleLowerCase().includes(this.searchValue)) {
         return value;
