@@ -27,12 +27,24 @@
 
   </ion-card>
 
-  <ion-card *ngIf="stop" *ngFor="let item of items; let i=index">
-    <ion-card-header>
-      
-    </ion-card-header>
-    <ion-card-content>
-      
-    </ion-card-content>
-  </ion-card>
+  <ng-template [ngIf]="predictions">
+    <ion-card *ngFor="let prediction of predictions">
+      <ion-card-header>
+        <h2 text-wrap>{{prediction.stop.title}}</h2>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item *ngFor="let value of prediction.values" text-wrap>
+          {{ value.epochTime | date:'mm:ss' }} - {{ value.branch }}
+        </ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-12>
+              <button ion-button small><ion-icon name="bookmarks"></ion-icon></button>
+              <button ion-button small (click)="sendSMS()"><ion-icon name="text"></ion-icon></button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
 </ion-content>
