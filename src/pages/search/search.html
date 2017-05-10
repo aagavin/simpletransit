@@ -19,18 +19,15 @@
         <button *ngIf="direction" ion-item (click)="selectStop()">
           Select Stop
         </button>
-        <ion-item *ngIf="direction && stop" (click)="selectStop()">
-          <ion-badge text-wrap>{{stop.title}}</ion-badge>
-        </ion-item>
       </ion-list>
     </ion-card-content>
 
   </ion-card>
 
-  <ng-template [ngIf]="predictions">
+  <ng-template [ngIf]="stop">
     <ion-card *ngFor="let prediction of predictions">
       <ion-card-header>
-        <h2 text-wrap>{{prediction.stop.title}}</h2>
+        <h2 text-wrap>{{stop.title}}</h2>
       </ion-card-header>
       <ion-card-content>
         <ion-item *ngFor="let value of prediction.values | slice:0:3" text-wrap>
