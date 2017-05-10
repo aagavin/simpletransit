@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ModalController, Modal } from 'ionic-angular';
 import { Http } from "@angular/http";
+import { SMS } from '@ionic-native/sms';
 
 import { Route } from "../stop-pick/route/route";
 import { Direction } from "../stop-pick/direction/direction";
@@ -11,7 +12,7 @@ import { ApiProvider } from "../../providers/api-provider";
 @Component({
   selector: 'page-search',
   templateUrl: 'search.html',
-  providers: [ApiProvider]
+  providers: [ApiProvider, SMS]
 })
 export class SearchPage {
 
@@ -26,7 +27,12 @@ export class SearchPage {
    * 
    * @memberOf SearchPage
    */
-  constructor(public modalController: ModalController, private apiProvider: ApiProvider, private http: Http) {
+  constructor(
+    public modalController: ModalController,
+    private apiProvider: ApiProvider,
+    private http: Http,
+    private sms: SMS
+  ) {
     this.route = null;
     this.direction = null;
     this.stop = null;
@@ -82,7 +88,7 @@ export class SearchPage {
     stopModal.onDidDismiss(value => {
       console.log(value);
       this.stop = value;
-      if(value!=null){this.getStopPrediction();}
+      if (value != null) { this.getStopPrediction(); }
     });
   }
 
@@ -94,15 +100,24 @@ export class SearchPage {
    */
   public getStopPrediction(): void {
     let url: string = `http://restbus.info/api/agencies/ttc/routes/${this.route}/stops/${this.stop.id}/predictions`;
+    console.log(url);
     this.http.get(url)
       .map(res => res.json())
       .subscribe(
-      data => {
-        console.log(data);
-      },
+      data => this.predictions = data,
       err => console.log(err),
-      () => console.log('done getting predictions')
+      () => { console.log('done getting predictions'); console.log(this.predictions); }
       );
+  }
+
+  public sendSMS(): void {
+    this.sms.send('898882', this.stop.code)
+      .then(value => {
+        console.log('success sent text ' + value);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
 }
