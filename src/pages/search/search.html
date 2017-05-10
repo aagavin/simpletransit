@@ -33,14 +33,25 @@
         <h2 text-wrap>{{prediction.stop.title}}</h2>
       </ion-card-header>
       <ion-card-content>
-        <ion-item *ngFor="let value of prediction.values" text-wrap>
-          {{ value.epochTime | date:'mm:ss' }} - {{ value.branch }}
+        <ion-item *ngFor="let value of prediction.values | slice:0:3" text-wrap>
+          {{ value.seconds | relativeSeconds }} - {{ value.branch }}
         </ion-item>
         <ion-grid>
           <ion-row>
-            <ion-col col-12>
-              <button ion-button small><ion-icon name="bookmarks"></ion-icon></button>
-              <button ion-button small (click)="sendSMS()"><ion-icon name="text"></ion-icon></button>
+            <ion-col col-4>
+              <button ion-button small full>
+                <ion-icon name="bookmarks"></ion-icon>
+                </button>
+            </ion-col>
+            <ion-col col-4>
+              <button ion-button small (click)="sendSMS()" full>
+              <ion-icon name="text"></ion-icon>
+              </button>
+            </ion-col>
+            <ion-col col-4>
+              <button ion-button small (click)="getStopPrediction()" full>
+                <ion-icon name="refresh-circle"></ion-icon>
+                </button>
             </ion-col>
           </ion-row>
         </ion-grid>
