@@ -63,7 +63,7 @@ export class Stop {
    */
   public onInput(event): void {
     this.stopsFiltered = this.stops.filter(value => {
-      if (value['title'].toLocaleLowerCase().includes(this.searchValue)) {
+      if (value['title'].toLocaleLowerCase().includes(this.searchValue.toLocaleLowerCase())) {
         return value;
       }
     })
