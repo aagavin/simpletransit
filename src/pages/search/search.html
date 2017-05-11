@@ -1,6 +1,6 @@
-<ion-header>
+<ion-header color="primary">
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>Search</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -27,7 +27,7 @@
   <ng-template [ngIf]="stop">
     <ion-card>
     <ion-card-header>
-      <h2 text-wrap>{{stop.title}}</h2>
+      <h2 text-wrap><b>{{stop.title}}</b></h2>
     </ion-card-header>
     </ion-card>
     <ion-card *ngFor="let prediction of predictions">

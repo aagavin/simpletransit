@@ -10,7 +10,7 @@ import { MyApp } from './app.component';
 
 import { SearchPage } from '../pages/search/search';
 import { SettingPage } from '../pages/setting/setting';
-import { AboutPage } from '../pages/about/about';
+import { FavouritesPage } from '../pages/favourites/favourites';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { Route } from '../pages/stop-pick/route/route';
@@ -30,7 +30,7 @@ import { FavouriteProvider } from '../providers/favourite/favourite';
     TabsPage,
     Route,
     Direction,
-    AboutPage,
+    FavouritesPage,
     Stop
   ],
   imports: [
@@ -47,7 +47,7 @@ import { FavouriteProvider } from '../providers/favourite/favourite';
     TabsPage,
     Route,
     Direction,
-    AboutPage,
+    FavouritesPage,
     Stop
   ],
   providers: [
