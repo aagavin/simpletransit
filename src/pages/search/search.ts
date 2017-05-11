@@ -1,18 +1,21 @@
 import { Component } from '@angular/core';
 import { ModalController, Modal } from 'ionic-angular';
 import { Http } from "@angular/http";
+
 import { SMS } from '@ionic-native/sms';
+import { ApiProvider } from "../../providers/api-provider";
+import { FavouriteProvider } from "../../providers/favourite/favourite";
 
 import { Route } from "../stop-pick/route/route";
 import { Direction } from "../stop-pick/direction/direction";
 import { Stop } from "../stop-pick/stop/stop";
 
-import { ApiProvider } from "../../providers/api-provider";
+
 
 @Component({
   selector: 'page-search',
   templateUrl: 'search.html',
-  providers: [ApiProvider, SMS]
+  providers: [ApiProvider, SMS, FavouriteProvider]
 })
 export class SearchPage {
 
@@ -31,7 +34,8 @@ export class SearchPage {
     public modalController: ModalController,
     private apiProvider: ApiProvider,
     private http: Http,
-    private sms: SMS
+    private sms: SMS,
+    private favouriteProvider:FavouriteProvider
   ) {
     this.route = null;
     this.direction = null;
@@ -110,6 +114,12 @@ export class SearchPage {
       );
   }
 
+  /**
+   * Sends an SMS message 
+   * 
+   * 
+   * @memberof SearchPage
+   */
   public sendSMS(): void {
     this.sms.send('898882', this.stop.code)
       .then(value => {
@@ -118,6 +128,17 @@ export class SearchPage {
       .catch(err => {
         console.log(err);
       });
+  }
+
+
+  /**
+   * Adds to a list of favourite
+   * 
+   * 
+   * @memberof SearchPage
+   */
+  public addToFavourites():void{
+    this.favouriteProvider.addToFavourites(this.route,this.stop.title, this.stop.code, this.stop.id);
   }
 
 }

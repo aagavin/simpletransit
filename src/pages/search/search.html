@@ -36,17 +36,17 @@
         <ion-grid>
           <ion-row>
             <ion-col col-4>
-              <button ion-button small full>
+              <button ion-button (click)="addToFavourites()" full>
                 <ion-icon name="bookmarks"></ion-icon>
                 </button>
             </ion-col>
             <ion-col col-4>
-              <button ion-button small (click)="sendSMS()" full>
+              <button ion-button (click)="sendSMS()" full>
               <ion-icon name="text"></ion-icon>
               </button>
             </ion-col>
             <ion-col col-4>
-              <button ion-button small (click)="getStopPrediction()" full>
+              <button ion-button (click)="getStopPrediction()" full>
                 <ion-icon name="refresh-circle"></ion-icon>
                 </button>
             </ion-col>
