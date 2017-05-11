@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController, Modal } from 'ionic-angular';
+import { ModalController, Modal, ToastController } from 'ionic-angular';
 import { Http } from "@angular/http";
 
 import { SMS } from '@ionic-native/sms';
@@ -35,7 +35,8 @@ export class SearchPage {
     private apiProvider: ApiProvider,
     private http: Http,
     private sms: SMS,
-    private favouriteProvider:FavouriteProvider
+    private favouriteProvider:FavouriteProvider,
+    private toastController:ToastController
   ) {
     this.route = null;
     this.direction = null;
@@ -139,6 +140,10 @@ export class SearchPage {
    */
   public addToFavourites():void{
     this.favouriteProvider.addToFavourites(this.route,this.stop.title, this.stop.code, this.stop.id);
+    this.toastController.create({
+      message: 'Added stop to favourites',
+      duration: 3000
+    }).present();
   }
 
 }
