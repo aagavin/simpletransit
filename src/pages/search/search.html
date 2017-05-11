@@ -25,34 +25,41 @@
   </ion-card>
 
   <ng-template [ngIf]="stop">
+    <ion-card>
+    <ion-card-header>
+      <h2 text-wrap>{{stop.title}}</h2>
+    </ion-card-header>
+    </ion-card>
     <ion-card *ngFor="let prediction of predictions">
-      <ion-card-header>
-        <h2 text-wrap>{{stop.title}}</h2>
-      </ion-card-header>
       <ion-card-content>
         <ion-item *ngFor="let value of prediction.values | slice:0:3" text-wrap>
           {{ value.seconds | relativeSeconds }} - {{ value.branch }}
         </ion-item>
-        <ion-grid>
-          <ion-row>
-            <ion-col col-4>
-              <button ion-button (click)="addToFavourites()" full>
-                <ion-icon name="bookmarks"></ion-icon>
-                </button>
-            </ion-col>
-            <ion-col col-4>
-              <button ion-button (click)="sendSMS()" full>
-              <ion-icon name="text"></ion-icon>
-              </button>
-            </ion-col>
-            <ion-col col-4>
-              <button ion-button (click)="getStopPrediction()" full>
-                <ion-icon name="refresh-circle"></ion-icon>
-                </button>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
       </ion-card-content>
     </ion-card>
+    <ion-card>
+  <ion-card-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-4>
+          <button ion-button (click)="addToFavourites()" full>
+          <ion-icon name="bookmarks"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col col-4>
+          <button ion-button (click)="sendSMS()" full>
+          <ion-icon name="text"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col col-4>
+          <button ion-button (click)="getStopPrediction()" full>
+          <ion-icon name="refresh-circle"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+
+</ion-card>
   </ng-template>
 </ion-content>
