@@ -34,11 +34,8 @@ export class Route {
   }
 
   public onInput(event): void {
-    console.log('searrrrrrrrr');
-    console.log(this.searchValue);
 
     this.routesFiltered = this.routes.filter(value => {
-      console.log(value['title']+' :: '+this.searchValue.toLocaleLowerCase());
       if ((value['title'].toLocaleLowerCase()).includes((this.searchValue.toLocaleLowerCase()))) {
         return value;
       }
