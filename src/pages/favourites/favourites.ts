@@ -16,7 +16,7 @@ import {Observable} from 'rxjs/Rx';
 })
 export class FavouritesPage {
 
-  private favArr: object[];
+  private favouritesArr: object[];
 
   constructor(
     private navCtrl: NavController,
@@ -25,7 +25,7 @@ export class FavouritesPage {
     private favouriteProvider: FavouriteProvider,
     private http: Http
   ) {
-
+    this.favouritesArr=[];
   }
 
   public ionViewDidLoad() {
@@ -33,7 +33,6 @@ export class FavouritesPage {
 
     this.favouriteProvider.getAllFavourites()
       .then(favourites => {
-        console.log(favourites);
         this.getStopTimes(favourites);
       })
       .catch(err => {
@@ -46,13 +45,26 @@ export class FavouritesPage {
     let favObj: Observable<object>[] = []
 
     favourites.forEach(favourite => {
-      let url: string = `http://restbus.info/api/agencies/ttc/routes/${favourites['route']}/stops/${favourites['id']}/predictions`;
+      let url: string = `http://restbus.info/api/agencies/ttc/routes/${favourite['route']}/stops/${favourite['id']}/predictions`;
       favObj.push(this.http.get(url).map(res => res.json()));
     });
 
-    Observable.forkJoin(favObj).subscribe(value =>{
-      console.log(value);
-    })
+    Observable.forkJoin(favObj)
+    .subscribe(value =>{
+      //console.log(value);
+      value.forEach((res, index) =>{
+        //favObj[index]['json'] =res
+        this.favouritesArr.push({
+          'favInfo': favourites[index],
+          'jsonInfo': res
+        });
+      });
+    
+      console.log(this.favouritesArr);
+    },
+    err => console.log(err),
+    ()=> console.log('done getting favourites')
+    );
   }
 
 }
