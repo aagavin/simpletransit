@@ -14,7 +14,7 @@
     </ion-card-header>
     
     <ion-card-content>
-      <ion-list *ngFor="let stops of favourite.jsonInfo">
+      <ion-list *ngFor="let stops of favourite.jsonInfo; let i = index">
         <ion-item *ngFor="let stop of stops.values | slice:0:3">
           {{stop.seconds  | relativeSeconds}} - {{stop.branch}}
         </ion-item> 
@@ -24,7 +24,7 @@
         <ion-row>
           <ion-col col-4>
             <button ion-button (click)="addToFavourites()" full>
-              <ion-icon name="bookmarks"></ion-icon>
+                <ion-icon name="remove-circle"></ion-icon>
             </button>
           </ion-col>
           <ion-col col-4>
