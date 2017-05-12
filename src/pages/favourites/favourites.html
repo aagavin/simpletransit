@@ -7,12 +7,39 @@
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let favourite of favourites">
+  <ion-card *ngFor="let favourite of favouritesArr">
+  
     <ion-card-header>
-      {{favourite.title}}
+      <h2 text-wrap><b>{{favourite.favInfo.route}} - {{favourite.favInfo.title}}</b></h2>
     </ion-card-header>
+    
     <ion-card-content>
-      Hello
+      <ion-list *ngFor="let stops of favourite.jsonInfo">
+        <ion-item *ngFor="let stop of stops.values | slice:0:3">
+          {{stop.seconds  | relativeSeconds}} - {{stop.branch}}
+        </ion-item> 
+      </ion-list>
+      
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4>
+            <button ion-button (click)="addToFavourites()" full>
+              <ion-icon name="bookmarks"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col col-4>
+            <button ion-button (click)="sendSMS()" full>
+              <ion-icon name="text"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col col-4>
+            <button ion-button (click)="getStopPrediction()" full>
+              <ion-icon name="refresh-circle"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-card-content>
+  
   </ion-card>
 </ion-content>
