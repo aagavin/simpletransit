@@ -6,6 +6,13 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-
+<ion-content>
+  <ion-card *ngFor="let favourite of favourites">
+    <ion-card-header>
+      {{favourite.title}}
+    </ion-card-header>
+    <ion-card-content>
+      Hello
+    </ion-card-content>
+  </ion-card>
 </ion-content>
