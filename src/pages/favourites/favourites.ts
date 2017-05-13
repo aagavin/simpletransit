@@ -25,11 +25,12 @@ export class FavouritesPage {
     private favouriteProvider: FavouriteProvider,
     private http: Http
   ) {
-    this.favouritesArr=[];
+    
   }
 
-  public ionViewDidLoad() {
+  public ionViewDidEnter() {
     console.log('loads favourite');
+    this.favouritesArr=[];
 
     this.favouriteProvider.getAllFavourites()
       .then(favourites => {
@@ -39,6 +40,16 @@ export class FavouritesPage {
         console.log(err);
       });
 
+  }
+
+  public removeFavourite(id:number):void{
+    this.favouriteProvider.removeFromFavourites(id).then(value =>{
+      this.ionViewDidEnter();
+    })
+    .catch(err =>{
+      console.log(err);
+    });
+    
   }
 
   public getStopTimes(favourites: object[]): void {
