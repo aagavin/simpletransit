@@ -55,6 +55,41 @@ export class FavouriteProvider {
       });
   }
 
+
+  public removeFromFavourites(id: number):Promise<boolean> {
+    return new Promise<boolean>((resolve, reject)=>{
+
+    this.storage.get('favourites')
+    .then((favourites: Set<string>)=>{
+      if (favourites==null) {
+        favourites = new Set<string>();
+      }
+
+      favourites.forEach(favourite => {
+        if(JSON.parse(favourite)['id']===id){
+          favourites.delete(favourite);
+          console.log('removed' + JSON.stringify(favourite));
+          return;
+        }
+      });
+
+      this.storage.set('favourites',favourites)
+      .then(value => {
+        resolve(true);
+      })
+      .catch(err =>{
+        console.log(err);
+        reject(false);
+      });
+    })
+    .catch(err => {
+      reject(false);
+    });
+      
+    });
+
+  }
+
   /**
    * Gets an array of favourites objects
    * 
@@ -79,6 +114,8 @@ export class FavouriteProvider {
       })
     });
   }
+
+
 
 
 
