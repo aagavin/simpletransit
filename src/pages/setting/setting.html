@@ -9,8 +9,12 @@
 <ion-content padding>
   <ion-list>
     <button ion-item (click)="updateRouteList()">
-      <ion-icon name="cloud-download" item-left></ion-icon>
+      <ion-icon name="cloud-download"></ion-icon>
       Update Route List
+    </button>
+    <button ion-item (click)="removeAllFavourites()">
+      <ion-icon name="trash"></ion-icon>
+      Remove All Favourites
     </button>
   </ion-list>
 </ion-content>
