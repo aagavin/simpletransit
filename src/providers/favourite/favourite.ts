@@ -56,6 +56,14 @@ export class FavouriteProvider {
   }
 
 
+  /**
+   * Removes an object from favourites
+   * 
+   * @param {number} id 
+   * @returns {Promise<boolean>} 
+   * 
+   * @memberof FavouriteProvider
+   */
   public removeFromFavourites(id: number):Promise<boolean> {
     return new Promise<boolean>((resolve, reject)=>{
 
@@ -112,6 +120,15 @@ export class FavouriteProvider {
       .catch(err =>{
         reject(err);
       })
+    });
+  }
+
+
+  public removeAllFavourites():Promise<boolean>{
+    return new Promise<boolean>((resolve, reject)=>{
+      this.storage.set('favourites', new Set())
+      .then(vaule =>{ resolve(true)})
+      .catch(err =>{ reject(false)});
     });
   }
 
