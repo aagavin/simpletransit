@@ -62,9 +62,7 @@ export class FavouritesPage {
 
     Observable.forkJoin(favObj)
     .subscribe(value =>{
-      //console.log(value);
       value.forEach((res, index) =>{
-        //favObj[index]['json'] =res
         this.favouritesArr.push({
           'favInfo': favourites[index],
           'jsonInfo': res
