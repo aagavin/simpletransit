@@ -25,7 +25,7 @@ export class FavouritesPage {
     private favouriteProvider: FavouriteProvider,
     private http: Http
   ) {
-    
+
   }
 
   public ionViewDidEnter() {
@@ -49,7 +49,7 @@ export class FavouritesPage {
     .catch(err =>{
       console.log(err);
     });
-    
+
   }
 
   public getStopTimes(favourites: object[]): void {
@@ -68,10 +68,16 @@ export class FavouritesPage {
           'jsonInfo': res
         });
       });
-    
+
       console.log(this.favouritesArr);
     },
-    err => console.log(err),
+    err => {
+      for (var i = 0; i < favourites.length; i++) {
+        this.favouritesArr.push({
+          'favInfo': favourites[i]
+        });
+      }
+    },
     ()=> console.log('done getting favourites')
     );
   }
