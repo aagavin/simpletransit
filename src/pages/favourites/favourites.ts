@@ -44,7 +44,13 @@ export class FavouritesPage {
 
   public removeFavourite(id: number): void {
     this.favouriteProvider.removeFromFavourites(id).then(value => {
-      this.ionViewDidEnter();
+      // this.ionViewDidEnter();
+      for(let i=0;i< this.favouritesArr.length; i++){
+        if(this.favouritesArr[i]['favInfo']['id']===id){
+          this.favouritesArr.splice(i, 1);
+          break;
+        }
+      }
     })
       .catch(err => {
         console.log(err);
@@ -99,6 +105,7 @@ export class FavouritesPage {
           err=>console.log(err),
           ()=>console.log('done updating')
         );
+        break;
         //console.log(this.favouritesArr[i]);
       }
     }
