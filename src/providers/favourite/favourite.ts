@@ -20,7 +20,7 @@ export class FavouriteProvider {
    * 
    * @memberof FavouriteProvider
    */
-  public addToFavourites(route: number, title: string, code: number, id: number): void {
+  public addToFavourites(route: number,direction:string, title: string, code: number, id: number): void {
     // FavouriteProvider
     this.storage.get('favourites')
       .then((favourites: Set<string>) => {
@@ -32,6 +32,7 @@ export class FavouriteProvider {
         favourites.add(JSON.stringify(
           {
             'route': route,
+            'direction': direction,
             'title': title,
             'code': code,
             'id': id
