@@ -6,7 +6,7 @@ import { SMS } from '@ionic-native/sms';
 import { Http } from "@angular/http";
 
 import { FavouriteProvider } from "../../providers/favourite/favourite";
-import {Observable} from 'rxjs/Rx';
+import { Observable } from 'rxjs/Rx';
 
 
 @Component({
@@ -30,7 +30,7 @@ export class FavouritesPage {
 
   public ionViewDidEnter() {
     console.log('loads favourite');
-    this.favouritesArr=[];
+    this.favouritesArr = [];
 
     this.favouriteProvider.getAllFavourites()
       .then(favourites => {
@@ -42,13 +42,13 @@ export class FavouritesPage {
 
   }
 
-  public removeFavourite(id:number):void{
-    this.favouriteProvider.removeFromFavourites(id).then(value =>{
+  public removeFavourite(id: number): void {
+    this.favouriteProvider.removeFromFavourites(id).then(value => {
       this.ionViewDidEnter();
     })
-    .catch(err =>{
-      console.log(err);
-    });
+      .catch(err => {
+        console.log(err);
+      });
 
   }
 
@@ -61,25 +61,32 @@ export class FavouritesPage {
     });
 
     Observable.forkJoin(favObj)
-    .subscribe(value =>{
-      value.forEach((res, index) =>{
-        this.favouritesArr.push({
-          'favInfo': favourites[index],
-          'jsonInfo': res
+      .subscribe(value => {
+        value.forEach((res, index) => {
+          this.favouritesArr.push({
+            'favInfo': favourites[index],
+            'jsonInfo': res
+          });
         });
-      });
 
-      console.log(this.favouritesArr);
-    },
-    err => {
-      for (var i = 0; i < favourites.length; i++) {
-        this.favouritesArr.push({
-          'favInfo': favourites[i]
-        });
-      }
-    },
-    ()=> console.log('done getting favourites')
-    );
+        console.log(this.favouritesArr);
+      },
+      err => {
+        for (var i = 0; i < favourites.length; i++) {
+          this.favouritesArr.push({
+            'favInfo': favourites[i]
+          });
+        }
+      },
+      () => console.log('done getting favourites')
+      );
+  }
+
+
+  public sendSMS(code: string): void {
+    this.sms.send('898882', code)
+      .then(value => console.log('sent sms'))
+      .catch(err => console.log(err));
   }
 
 }
