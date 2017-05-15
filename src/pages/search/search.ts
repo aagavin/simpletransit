@@ -139,7 +139,7 @@ export class SearchPage {
    * @memberof SearchPage
    */
   public addToFavourites():void{
-    this.favouriteProvider.addToFavourites(this.route,this.stop.title, this.stop.code, this.stop.id);
+    this.favouriteProvider.addToFavourites(this.route,this.direction,this.stop.title, this.stop.code, this.stop.id);
     this.toastController.create({
       message: 'Added stop to favourites',
       duration: 2000
