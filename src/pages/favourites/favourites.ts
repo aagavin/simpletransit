@@ -88,5 +88,21 @@ export class FavouritesPage {
       .then(value => console.log('sent sms'))
       .catch(err => console.log(err));
   }
+  
+  public getStopPrediction(id: string):void{
+    for(let i=0;i< this.favouritesArr.length; i++){
+      if(this.favouritesArr[i]['favInfo']['id']===id){
+        let url: string = `http://restbus.info/api/agencies/ttc/routes/${this.favouritesArr[i]['favInfo']['route']}/stops/${this.favouritesArr[i]['favInfo']['id']}/predictions`;
+        this.http.get(url).map(res => res.json()).subscribe
+        (
+          data=> this.favouritesArr[i]['jsonInfo']=data,
+          err=>console.log(err),
+          ()=>console.log('done updating')
+        );
+        //console.log(this.favouritesArr[i]);
+      }
+    }
+
+  }
 
 }
