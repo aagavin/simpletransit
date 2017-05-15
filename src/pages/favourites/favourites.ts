@@ -24,9 +24,20 @@ export class FavouritesPage {
     private sms: SMS,
     private favouriteProvider: FavouriteProvider,
     private http: Http
-  ) {
-
+  ) {}
+  
+  private _getFavouriteById(id: number):object {
+    for(let i=0; i<this.favouritesArr.length;i++){
+      if(this.favouritesArr[i]['favInfo']['id']===id){
+        return {object: this.favouritesArr[i], index:i};
+      }
+    }
   }
+  
+  private _getPredictionUrl(route:string, id:number):string{
+    return `http://restbus.info/api/agencies/ttc/routes/${route}/stops/${id}/predictions`;
+  }
+
 
   public ionViewDidEnter() {
     console.log('loads favourite');
@@ -44,25 +55,20 @@ export class FavouritesPage {
 
   public removeFavourite(id: number): void {
     this.favouriteProvider.removeFromFavourites(id).then(value => {
-      // this.ionViewDidEnter();
-      for(let i=0;i< this.favouritesArr.length; i++){
-        if(this.favouritesArr[i]['favInfo']['id']===id){
-          this.favouritesArr.splice(i, 1);
-          break;
-        }
-      }
+      let object = this._getFavouriteById(id);
+      this.favouritesArr.splice(object['id'], 1)
     })
       .catch(err => {
         console.log(err);
       });
 
   }
-
+  
   public getStopTimes(favourites: object[]): void {
     let favObj: Observable<object>[] = []
 
     favourites.forEach(favourite => {
-      let url: string = `http://restbus.info/api/agencies/ttc/routes/${favourite['route']}/stops/${favourite['id']}/predictions`;
+      let url: string = this._getPredictionUrl(favourite['route'], favourite['id']);
       favObj.push(this.http.get(url).map(res => res.json()));
     });
 
@@ -95,20 +101,16 @@ export class FavouritesPage {
       .catch(err => console.log(err));
   }
   
-  public getStopPrediction(id: string):void{
-    for(let i=0;i< this.favouritesArr.length; i++){
-      if(this.favouritesArr[i]['favInfo']['id']===id){
-        let url: string = `http://restbus.info/api/agencies/ttc/routes/${this.favouritesArr[i]['favInfo']['route']}/stops/${this.favouritesArr[i]['favInfo']['id']}/predictions`;
-        this.http.get(url).map(res => res.json()).subscribe
-        (
-          data=> this.favouritesArr[i]['jsonInfo']=data,
-          err=>console.log(err),
-          ()=>console.log('done updating')
-        );
-        break;
-        //console.log(this.favouritesArr[i]);
-      }
-    }
+  public getStopPrediction(id: number):void{
+
+    let favourite = this._getFavouriteById(id);
+    let url: string = this._getPredictionUrl(favourite['object']['favInfo']['route'], favourite['object']['favInfo']['id']);
+    this.http.get(url).map(res => res.json()).subscribe
+    (
+      data=> this.favouritesArr[favourite['index']]['jsonInfo']=data,
+      err=>console.log(err),
+      ()=>console.log('done updating')
+    );
 
   }
 
