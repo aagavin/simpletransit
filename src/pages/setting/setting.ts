@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { Http } from "@angular/http";
-import { NavController, LoadingController, Loading } from 'ionic-angular';
+import { IonicPage, NavController, LoadingController, Loading } from 'ionic-angular';
 import { ApiProvider } from "../../providers/api-provider";
 import { FavouriteProvider } from "../../providers/favourite/favourite";
 
+@IonicPage()
 @Component({
   selector: 'page-setting',
   templateUrl: 'setting.html',

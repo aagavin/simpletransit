@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController, Modal, ToastController } from 'ionic-angular';
+import { IonicPage, ModalController, Modal, ToastController } from 'ionic-angular';
 import { Http } from "@angular/http";
 
 import { SMS } from '@ionic-native/sms';
@@ -10,8 +10,7 @@ import { Route } from "../stop-pick/route/route";
 import { Direction } from "../stop-pick/direction/direction";
 import { Stop } from "../stop-pick/stop/stop";
 
-
-
+@IonicPage()
 @Component({
   selector: 'page-search',
   templateUrl: 'search.html',
