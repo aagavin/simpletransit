@@ -11,7 +11,6 @@ import { MyApp } from './app.component';
 import { SearchPage } from '../pages/search/search';
 import { SettingPage } from '../pages/setting/setting';
 import { FavouritesPage } from '../pages/favourites/favourites';
-import { TabsPage } from '../pages/tabs/tabs';
 
 import { Route } from '../pages/stop-pick/route/route';
 import { Direction } from "../pages/stop-pick/direction/direction";
@@ -27,7 +26,7 @@ import { FavouriteProvider } from '../providers/favourite/favourite';
     MyApp,
     SearchPage,
     SettingPage,
-    TabsPage,
+    
     Route,
     Direction,
     FavouritesPage,
@@ -44,7 +43,7 @@ import { FavouriteProvider } from '../providers/favourite/favourite';
     MyApp,
     SearchPage,
     SettingPage,
-    TabsPage,
+    
     Route,
     Direction,
     FavouritesPage,
