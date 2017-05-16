@@ -1,4 +1,4 @@
-simpletransit
+Simple Transit
 ===
 
 Simple TTC transit app 
