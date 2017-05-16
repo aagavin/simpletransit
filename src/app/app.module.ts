@@ -6,8 +6,6 @@ import { IonicStorageModule } from '@ionic/storage';
 
 import { MyApp } from './app.component';
 
-import { FavouritesPage } from '../pages/favourites/favourites';
-
 import { Route } from '../pages/stop-pick/route/route';
 import { Direction } from "../pages/stop-pick/direction/direction";
 import { Stop } from "../pages/stop-pick/stop/stop";
@@ -21,7 +19,6 @@ import { FavouriteProvider } from '../providers/favourite/favourite';
     MyApp,
     Route,
     Direction,
-    FavouritesPage,
     Stop
   ],
   imports: [
@@ -33,11 +30,8 @@ import { FavouriteProvider } from '../providers/favourite/favourite';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    
-
     Route,
     Direction,
-    FavouritesPage,
     Stop
   ],
   providers: [
