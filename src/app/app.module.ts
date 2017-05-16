@@ -9,7 +9,6 @@ import { TimeDifference } from "../pipes/relative-seconds";
 import { MyApp } from './app.component';
 
 import { SearchPage } from '../pages/search/search';
-import { SettingPage } from '../pages/setting/setting';
 import { FavouritesPage } from '../pages/favourites/favourites';
 
 import { Route } from '../pages/stop-pick/route/route';
@@ -25,8 +24,7 @@ import { FavouriteProvider } from '../providers/favourite/favourite';
     TimeDifference,
     MyApp,
     SearchPage,
-    SettingPage,
-    
+
     Route,
     Direction,
     FavouritesPage,
@@ -42,8 +40,7 @@ import { FavouriteProvider } from '../providers/favourite/favourite';
   entryComponents: [
     MyApp,
     SearchPage,
-    SettingPage,
-    
+
     Route,
     Direction,
     FavouritesPage,

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 
 import { SearchPage } from "../search/search";
-import { SettingPage } from "../setting/setting";
 import { FavouritesPage } from "../favourites/favourites";
 
 @IonicPage()
@@ -13,7 +12,7 @@ export class TabsPage {
 
   tab1Root = FavouritesPage;
   tab2Root = SearchPage;
-  tab3Root = SettingPage;
+  tab3Root = 'SettingPage';
 
   constructor() {
 
