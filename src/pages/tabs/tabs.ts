@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import { IonicPage } from 'ionic-angular';
 
 import { SearchPage } from "../search/search";
 import { SettingPage } from "../setting/setting";
 import { FavouritesPage } from "../favourites/favourites";
 
+@IonicPage()
 @Component({
   templateUrl: 'tabs.html'
 })
