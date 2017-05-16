@@ -4,11 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
 
-import { TimeDifference } from "../pipes/relative-seconds";
-
 import { MyApp } from './app.component';
 
-import { SearchPage } from '../pages/search/search';
 import { FavouritesPage } from '../pages/favourites/favourites';
 
 import { Route } from '../pages/stop-pick/route/route';
@@ -21,10 +18,7 @@ import { FavouriteProvider } from '../providers/favourite/favourite';
 
 @NgModule({
   declarations: [
-    TimeDifference,
     MyApp,
-    SearchPage,
-
     Route,
     Direction,
     FavouritesPage,
@@ -39,7 +33,7 @@ import { FavouriteProvider } from '../providers/favourite/favourite';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    SearchPage,
+    
 
     Route,
     Direction,
