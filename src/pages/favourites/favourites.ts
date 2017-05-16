@@ -5,10 +5,12 @@ import { SMS } from '@ionic-native/sms';
 
 import { Http } from "@angular/http";
 
+import { IonicPage } from 'ionic-angular';
+
 import { FavouriteProvider } from "../../providers/favourite/favourite";
 import { Observable } from 'rxjs/Rx';
 
-
+@IonicPage()
 @Component({
   selector: 'favourites',
   templateUrl: 'favourites.html',
