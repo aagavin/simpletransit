@@ -6,9 +6,9 @@ import { IonicStorageModule } from '@ionic/storage';
 
 import { MyApp } from './app.component';
 
-import { Route } from '../pages/stop-pick/route/route';
-import { Direction } from "../pages/stop-pick/direction/direction";
-import { Stop } from "../pages/stop-pick/stop/stop";
+import { Route } from '../pages/search/stop-pick/route/route';
+import { Direction } from "../pages/search/stop-pick/direction/direction";
+import { Stop } from "../pages/search/stop-pick/stop/stop";
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -17,6 +17,7 @@ import { FavouriteProvider } from '../providers/favourite/favourite';
 @NgModule({
   declarations: [
     MyApp,
+
     Route,
     Direction,
     Stop
