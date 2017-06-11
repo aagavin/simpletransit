@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ViewController } from 'ionic-angular';
-import { ApiProvider } from "../../../providers/api-provider";
+import { ApiProvider } from "../../../../providers/api-provider";
 
 @Component({
   selector: 'page-route',

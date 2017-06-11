@@ -6,9 +6,9 @@ import { SMS } from '@ionic-native/sms';
 import { ApiProvider } from "../../providers/api-provider";
 import { FavouriteProvider } from "../../providers/favourite/favourite";
 
-import { Route } from "../stop-pick/route/route";
-import { Direction } from "../stop-pick/direction/direction";
-import { Stop } from "../stop-pick/stop/stop";
+import { Route } from "./stop-pick/route/route";
+import { Direction } from "./stop-pick/direction/direction";
+import { Stop } from "./stop-pick/stop/stop";
 
 @IonicPage()
 @Component({
