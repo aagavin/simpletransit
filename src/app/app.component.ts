@@ -13,14 +13,25 @@ import { Http } from "@angular/http";
 export class MyApp {
   rootPage: any = 'TabsPage';
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private appVersion: AppVersion, private http: Http, private alertCtrl: AlertController) {
+  constructor(
+    platform: Platform,
+    statusBar: StatusBar,
+    splashScreen: SplashScreen,
+    private appVersion: AppVersion,
+    private http: Http,
+    private alertCtrl: AlertController
+  ) {
+
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
 
+
+      // !platform.is('core') ? this._checkVersionUpdate(): false;
       this._checkVersionUpdate();
+
     });
   }
 
@@ -30,15 +41,15 @@ export class MyApp {
       data => {
         if (data['currentVersion'] !== version) {
           this.alertCtrl.create({
-            title: 'A new version is available ',
-            subTitle: `<a href="https://aagavin.ca/update/apk/simpletransit.apk">click here to update</a>`,
-            buttons: ['OK']
+            title: 'A new version is available',
+            subTitle: 'Would you like to update?',
+            buttons: ['NO', { text: 'YES', handler: () => window.open('https://aagavin.ca/update/apk/simpletransit.apk', '_blank') }]
           }).present();
         }
       },
       err => console.log(err),
       () => console.log('done update check')
     )
-    return version;
+
   }
 }
