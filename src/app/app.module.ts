@@ -1,6 +1,7 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
+import { AppVersion } from '@ionic-native/app-version';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
 
@@ -38,6 +39,7 @@ import { FavouriteProvider } from '../providers/favourite/favourite';
   providers: [
     StatusBar,
     SplashScreen,
+    AppVersion,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     FavouriteProvider
   ]
