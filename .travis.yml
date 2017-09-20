@@ -51,6 +51,8 @@ deploy:
   api_key:
     secure: j0U1Vu7FCslBDpV+Es4QXHDpbZMRmwoKWIWs5GluDY712sZF/j20DINJxu/7JhzixMzASGmrrq/sQsUwuLDqm/WQVZ4XI0sGRCsSnUmsWjiKVjJHsu3jUzL37dSWotMCvSi0mbUzEYF9gSMzYQKMMW2nhrkLKNECwwbr4nA0q9JH5mbQKb05Qr8Zaq6J5t+d6H2X8ElyIfk5ZRTd633tL5IZk3N9B/ICKDE2idXhiDjpQvjVtUYdZux/MivcVipvw93bUGPpobBG7VjMOo9nlxjufbHPaTp3T+kQOAaKBBa/64bOjFBIdIgIDZBk8E/2u4riIieGcfqjQB1xcQCNQC7WcPA89wewFLD1jcpM3pzcrk5Itcds6v1X74PPmC/nHE5KjtXommmXSLSmxn1wse/iOEtSg59voV7yOQc7MDtwTEltoe/LvToNOUa/t77DixdirDG5Bljd92gijZ2U1CFPUFipLAWRnIvT8UpEgi1TnJBv9Xl15g4jPL0awONBgcx4ZcIDzk1cPI7hvSqrtB89DijapnockgUXbUYkGduwft7kCtFWVYqCzmqE6xr513cTXfxpPr1+DB9+dgR7Psm1i7JETT3C9/26qmP5tcBua70m7GAo6BgkhwOvihbsHLFhon0kGRSZdU2klaw4eEq4HFkrngAbLWVzxISPnf0=
   file: "/home/travis/build/aagavin/simpletransit/platforms/android/build/outputs/apk/android-debug.apk"
+  skip_cleanup: true
   on:
     repo: aagavin/simpletransit
     branch: develop
+    tags: true
