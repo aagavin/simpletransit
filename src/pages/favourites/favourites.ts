@@ -182,7 +182,6 @@ export class FavouritesPage {
    * @memberof FavouritesPage
    */
   public getStopPrediction(id: number): void {
-
     let favourite = this._getFavouriteById(id);
     let url: string = this._getPredictionUrl(favourite['object']['favInfo']['route'], favourite['object']['favInfo']['id']);
     this.http.get(url).map(res => res.json()).subscribe
