@@ -43,6 +43,7 @@ before_install:
 - npm -g install ionic cordova
 - npm install @ionic/app-scripts@2.1.4 --save-dev
 - npm install ionic-angular@3.6.1 --save
+- ionic cordova prepare android
 script:
 - npm install
 - ionic cordova build android
