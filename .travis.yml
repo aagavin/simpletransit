@@ -39,7 +39,7 @@ before_cache:
 before_install:
 - export LANG=en_US.UTF-8
 - nvm install 8
-- npm install npm@latest -g
+- npm install npm@5.1 -g
 - npm -g install ionic cordova
 script:
 - npm install
