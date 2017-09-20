@@ -55,4 +55,4 @@ deploy:
   on:
     repo: aagavin/simpletransit
     branch: develop
-    tags: true
+    tags: false
