@@ -42,7 +42,7 @@ before_install:
 - yarn global add ionic cordova
 script:
 - yarn install
-- ./travis/build-android.sh && ./travis/package-android.sh ; fi
+- ./travis/build-android.sh && ./travis/package-android.sh
 env:
   global:
   - JAVA_HOME=/usr/lib/jvm/java-8-oracle
