@@ -39,9 +39,10 @@ before_cache:
 before_install:
 - export LANG=en_US.UTF-8
 - nvm install 8
-- yarn global add ionic cordova
+- npm update -g npm 
+- npm -g install ionic cordova
 script:
-- yarn install
+- npm install
 - ionic cordova build android
 env:
   global:
